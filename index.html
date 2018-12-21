@@ -4,11 +4,21 @@
     <meta charset="utf-8">
     <title>MCTS Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
-    <script src="app.js" charset="utf-8"></script>
   </head>
   <body>
     <table id="board">
-      <script>drawBoard();</script>
+      <script>
+        function xMove() {
+          for (i = 1; i < 4; i++) {
+            document.write(`<tr>`)
+            for(j = 1; j < 4; j++) {
+              document.write(`<td id="${i}${j}" onClick="this.innerHTML='X'">  </td>`)
+            }
+            document.write(`</tr>`);
+          }
+        }
+        xMove();
+      </script>
     </table>
   </body>
 </html>
