@@ -1,24 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
+<html lang="en"   dir="ltr">
     <meta charset="utf-8">
     <title>MCTS Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <table id="board">
-      <script>
-        function xMove() {
-          for (i = 1; i < 4; i++) {
-            document.write(`<tr>`)
-            for(j = 1; j < 4; j++) {
-              document.write(`<td id="${i}${j}" onClick="this.innerHTML='X'">  </td>`)
-            }
-            document.write(`</tr>`);
-          }
-        }
-        xMove();
-      </script>
+      <tr id="trA">
+        <td id="tdA1">
+        </td>
+        <td id="tdA2">
+        </td>
+        <td id="tdA3">
+        </td>
+      </tr>
+      <tr id="trB">
+        <td id="tdB1">
+        </td>
+        <td id="tdB2">
+        </td>
+        <td id="tdB3">
+        </td>
+      </tr>
+      <tr id="trC">
+        <td id="tdC1">
+        </td>
+        <td id="tdC2">
+        </td>
+        <td id="tdC3">
+        </td>
     </table>
+    <script src="game.js" charset="utf-8"></script>
   </body>
 </html>
