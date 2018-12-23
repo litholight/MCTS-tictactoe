@@ -2,14 +2,17 @@ let turn = 1;
 
 let xMoves = [];
 let yMoves = [];
-let winMoves = [[A1,A2,A3],[],[]];
+let winMoves = [
+  ["A1","A2","A3"],
+  ["B1","B2","B3"],
+  ["C1","C2","C3"]];
 
 function playerMove(cell) {
-
   turn++;
   if (turn % 2 === 0) {
     xMoves.push(cell);
     console.log("xMoves", xMoves);
+    hasWon();
     return "X";
   } else {
     yMoves.push(cell);
@@ -18,9 +21,20 @@ function playerMove(cell) {
   }
 }
 
-// function hasWon() {
-//
-// }
+function hasWon() {
+  let isWon = false;
+  for (var i in winMoves) {
+    // alert(winMoves[i]);
+    // console.log("winMoves[i]",winMoves[i]);
+     if (winMoves[i].every(val => xMoves.includes(val))) {
+       isWon = true;
+       break;
+     } else {
+       isWon = false;
+     }
+  }
+  console.log(isWon);
+}
 
 
 // cells in row A
