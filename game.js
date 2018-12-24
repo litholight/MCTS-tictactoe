@@ -1,7 +1,8 @@
-let turn = 1;
+let turn = 0;
 
 let xMoves = [];
 let oMoves = [];
+let taken = [];
 let winMoves = [
   ["A1","A2","A3"],
   ["B1","B2","B3"],
@@ -13,17 +14,31 @@ let winMoves = [
   ["C1","B2","A3"]];
 
 function playerMove(cell) {
-  turn++;
   if (turn % 2 === 0) {
+    turn++
     xMoves.push(cell);
     evalGame();
     return "X";
   } else {
+    turn++
     oMoves.push(cell);
     evalGame();
     return "O"
   }
 }
+
+// function isTaken(cell) {
+//   let taken = xMoves.concat(oMoves);
+//   let help = false;
+//   taken.forEach(function(entry) {
+//     console.log("cell", cell);
+//     console.log("entry", entry);
+//     if (cell === entry) {
+//       help = true;
+//     }
+//   });
+//   return help;
+// }
 
 function evalGame() {
   let isWon = false;
@@ -44,16 +59,16 @@ function evalGame() {
 
 
 // cells in row A
-document.getElementById("A1").addEventListener("click", function(){this.innerHTML = playerMove("A1");});
-document.getElementById("A2").addEventListener("click", function(){this.innerHTML = playerMove("A2");});
-document.getElementById("A3").addEventListener("click", function(){this.innerHTML = playerMove("A3");});
+document.getElementById("A1").addEventListener("click", function(){if (this.innerHTML !== "X" && this.innerHTML !== "O") {this.innerHTML = playerMove("A1")}});
+document.getElementById("A2").addEventListener("click", function(){if (this.innerHTML !== "X" && this.innerHTML !== "O") {this.innerHTML = playerMove("A2")}});
+document.getElementById("A3").addEventListener("click", function(){if (this.innerHTML !== "X" && this.innerHTML !== "O") {this.innerHTML = playerMove("A3")}});
 
 // cells in row B
-document.getElementById("B1").addEventListener("click", function(){this.innerHTML = playerMove("B1");});
-document.getElementById("B2").addEventListener("click", function(){this.innerHTML = playerMove("B2");});
-document.getElementById("B3").addEventListener("click", function(){this.innerHTML = playerMove("B3");});
+document.getElementById("B1").addEventListener("click", function(){if (this.innerHTML !== "X" && this.innerHTML !== "O") {this.innerHTML = playerMove("B1")}});
+document.getElementById("B2").addEventListener("click", function(){if (this.innerHTML !== "X" && this.innerHTML !== "O") {this.innerHTML = playerMove("B2")}});
+document.getElementById("B3").addEventListener("click", function(){if (this.innerHTML !== "X" && this.innerHTML !== "O") {this.innerHTML = playerMove("B3")}});
 
 // cells in row C
-document.getElementById("C1").addEventListener("click", function(){this.innerHTML = playerMove("C1");});
-document.getElementById("C2").addEventListener("click", function(){this.innerHTML = playerMove("C2");});
-document.getElementById("C3").addEventListener("click", function(){this.innerHTML = playerMove("C3");});
+document.getElementById("C1").addEventListener("click", function(){if (this.innerHTML !== "X" && this.innerHTML !== "O") {this.innerHTML = playerMove("C1")}});
+document.getElementById("C2").addEventListener("click", function(){if (this.innerHTML !== "X" && this.innerHTML !== "O") {this.innerHTML = playerMove("C2")}});
+document.getElementById("C3").addEventListener("click", function(){if (this.innerHTML !== "X" && this.innerHTML !== "O") {this.innerHTML = playerMove("C3")}});
