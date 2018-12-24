@@ -1,39 +1,45 @@
 let turn = 1;
 
 let xMoves = [];
-let yMoves = [];
+let oMoves = [];
 let winMoves = [
   ["A1","A2","A3"],
   ["B1","B2","B3"],
-  ["C1","C2","C3"]];
+  ["C1","C2","C3"],
+  ["A1","B1","C1"],
+  ["A2","B2","C2"],
+  ["A3","B3","C3"],
+  ["A1","B2","C3"],
+  ["C1","B2","A3"]];
 
 function playerMove(cell) {
   turn++;
   if (turn % 2 === 0) {
     xMoves.push(cell);
-    console.log("xMoves", xMoves);
-    hasWon();
+    evalGame();
     return "X";
   } else {
-    yMoves.push(cell);
-    console.log("yMoves", yMoves);
+    oMoves.push(cell);
+    evalGame();
     return "O"
   }
 }
 
-function hasWon() {
+function evalGame() {
   let isWon = false;
   for (var i in winMoves) {
-    // alert(winMoves[i]);
-    // console.log("winMoves[i]",winMoves[i]);
      if (winMoves[i].every(val => xMoves.includes(val))) {
        isWon = true;
+       document.getElementById("gameResult").innerHTML = "X has won the game!";
        break;
+     } else if (winMoves[i].every(val => oMoves.includes(val))) {
+       isWon = true;
+       document.getElementById("gameResult").innerHTML = "O has won the game!";
      } else {
        isWon = false;
      }
   }
-  console.log(isWon);
+
 }
 
 
