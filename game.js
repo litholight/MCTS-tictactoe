@@ -20,7 +20,6 @@ let winMoves = [
   ["C1","B2","A3"]];
 
 function evalMovesTaken(currentMove, player) {
-
   if (player === "X") {
     xMoves.push(currentMove);
     taken = xMoves.concat(oMoves);
@@ -29,18 +28,22 @@ function evalMovesTaken(currentMove, player) {
     });
     console.log('leftMoves', leftMoves);
     console.log("xMoves",xMoves);
-    compMove();
+    if (turn < 9) {
+      compMove();
+    } else {
+      document.getElementById("gameResult").innerHTML = "The game was a draw!";
+    }
   }
   if (player === "O") {
     oMoves.push(currentMove);
     console.log("oMoves",oMoves);
   }
-
 }
 
 function playMove(cell) {
   if (turn % 2 === 0) {
     turn++;
+    console.log('turn', turn);
     evalMovesTaken(cell, "X");
     evalGame();
     return "X";
@@ -54,6 +57,7 @@ function compMove() {
   });
   var rand = leftMoves[Math.floor(Math.random() * leftMoves.length)];
   turn++;
+  console.log('turn', turn);
   document.getElementById(rand).innerHTML = "O";
   evalMovesTaken(rand, "O");
   evalGame();
