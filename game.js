@@ -21,15 +21,11 @@ let winMoves = [
 
 function initGame(who) {
   if (who === "computer") {
-    console.log('Initialized computer');
     var rand = leftMoves[Math.floor(Math.random() * leftMoves.length)];
     document.getElementById(rand).innerHTML = "O";
     evalMovesTaken(rand, "O");
-  } else {
-    console.log('Initialized me');
   }
 }
-
 
 function evalMovesTaken(currentMove, player) {
   if (player === "X") {
@@ -38,8 +34,6 @@ function evalMovesTaken(currentMove, player) {
     leftMoves = possibleMoves.filter(function(val) {
       return taken.indexOf(val) == -1;
     });
-    console.log('leftMoves', leftMoves);
-    console.log("xMoves",xMoves);
     if (turn < 9) {
       compMove();
     } else {
@@ -48,14 +42,12 @@ function evalMovesTaken(currentMove, player) {
   }
   if (player === "O") {
     oMoves.push(currentMove);
-    console.log("oMoves",oMoves);
   }
 }
 
 function playMove(cell) {
   if (turn % 2 === 0) {
     turn++;
-    console.log('turn', turn);
     evalMovesTaken(cell, "X");
     evalGame();
     return "X";
@@ -69,24 +61,11 @@ function compMove() {
   });
   var rand = leftMoves[Math.floor(Math.random() * leftMoves.length)];
   turn++;
-  console.log('turn', turn);
   document.getElementById(rand).innerHTML = "O";
   evalMovesTaken(rand, "O");
   evalGame();
 }
 
-// function isTaken(cell) {
-//   let taken = xMoves.concat(oMoves);
-//   let help = false;
-//   taken.forEach(function(entry) {
-//     console.log("cell", cell);
-//     console.log("entry", entry);
-//     if (cell === entry) {
-//       help = true;
-//     }
-//   });
-//   return help;
-// }
 
 function evalGame() {
   let isWon = false;
@@ -102,7 +81,6 @@ function evalGame() {
        isWon = false;
      }
   }
-
 }
 
 document.getElementById("computer").addEventListener("click", function() {initGame("computer");});
