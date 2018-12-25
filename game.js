@@ -31,7 +31,7 @@ function evalMovesTaken(currentMove, player) {
     if (turn < 9) {
       compMove();
     } else {
-      document.getElementById("gameResult").innerHTML = "The game was a draw!";
+      document.getElementById("gameResult").innerHTML = "The game is a draw!";
     }
   }
   if (player === "O") {
