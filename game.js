@@ -19,6 +19,18 @@ let winMoves = [
   ["A1","B2","C3"],
   ["C1","B2","A3"]];
 
+function initGame(who) {
+  if (who === "computer") {
+    console.log('Initialized computer');
+    var rand = leftMoves[Math.floor(Math.random() * leftMoves.length)];
+    document.getElementById(rand).innerHTML = "O";
+    evalMovesTaken(rand, "O");
+  } else {
+    console.log('Initialized me');
+  }
+}
+
+
 function evalMovesTaken(currentMove, player) {
   if (player === "X") {
     xMoves.push(currentMove);
@@ -92,6 +104,9 @@ function evalGame() {
   }
 
 }
+
+document.getElementById("computer").addEventListener("click", function() {initGame("computer");});
+document.getElementById("me").addEventListener("click", function() {initGame("me");});
 
 
 // cells in row A
