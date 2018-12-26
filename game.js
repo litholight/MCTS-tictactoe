@@ -19,6 +19,7 @@ let winMoves = [
   ["A1","B2","C3"],
   ["C1","B2","A3"]];
 
+
 function initGame(who) {
   if (who === "computer") {
     var rand = leftMoves[Math.floor(Math.random() * leftMoves.length)];
@@ -54,17 +55,7 @@ function playMove(cell) {
   }
 }
 
-function compMove() {
-  taken = xMoves.concat(oMoves);
-  leftMoves = possibleMoves.filter(function(val) {
-    return taken.indexOf(val) == -1;
-  });
-  var rand = leftMoves[Math.floor(Math.random() * leftMoves.length)];
-  turn++;
-  document.getElementById(rand).innerHTML = "O";
-  evalMovesTaken(rand, "O");
-  evalGame();
-}
+
 
 
 function evalGame() {
