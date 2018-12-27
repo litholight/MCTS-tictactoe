@@ -4,24 +4,23 @@ let oMoves = [];
 let taken = [];
 let player = "X"
 const possibleMoves =
-  ["sA1","sA2","sA3",
-   "sB1","sB2","sB3",
-   "sC1","sC2","sC3"];
+["A1","A2","A3",
+ "B1","B2","B3",
+ "C1","C2","C3"];
 let leftMoves = possibleMoves.filter(function(val) {
      return taken.indexOf(val) == -1;
    });
 let winMoves = [
-  ["sA1","sA2","sA3"],
-  ["sB1","sB2","sB3"],
-  ["sC1","sC2","sC3"],
-  ["sA1","sB1","sC1"],
-  ["sA2","sB2","sC2"],
-  ["sA3","sB3","sC3"],
-  ["sA1","sB2","sC3"],
-  ["sC1","sB2","sA3"]];
+  ["A1","A2","A3"],
+  ["B1","B2","B3"],
+  ["C1","C2","C3"],
+  ["A1","B1","C1"],
+  ["A2","B2","C2"],
+  ["A3","B3","C3"],
+  ["A1","B2","C3"],
+  ["C1","B2","A3"]];
 
 whoseTurn(0);
-initGame();
 
 function whoseTurn(turn) {
   if (turn % 2 === 0) {
@@ -29,21 +28,15 @@ function whoseTurn(turn) {
   } else {
     player = "O";
   }
-  turn++;
-  console.log("turn", turn);
-  console.log("whoseturn", player);
   return player;
 }
 
-function initGame() {
-  var rand = leftMoves[Math.floor(Math.random() * leftMoves.length)];
-  document.getElementById(rand).innerHTML = whoseTurn(turn);
-  evalMovesTaken(rand, whoseTurn(turn));
-}
+compMove(turn);
 
 function evalMovesTaken(currentMove, player) {
   if (player === "X") {
     xMoves.push(currentMove);
+    turn++;
     // creates an array that combines x moves and o moves
     taken = xMoves.concat(oMoves);
     // creates an array of left moves
@@ -51,25 +44,21 @@ function evalMovesTaken(currentMove, player) {
       return taken.indexOf(val) == -1;
     });
     if (turn < 9) {
+      evalGame();
       compMove(turn);
     } else {
+      evalGame();
       document.getElementById("gameResult").innerHTML = "The game is a draw!";
     }
   }
   if (turn < 9) {
-    oMoves.push(currentMove);
-      compMove(turn);
-  } else {
-      document.getElementById("gameResult").innerHTML = "The game is a draw!";
-  }
-}
-
-function playMove(cell) {
-  if (turn % 2 === 0) {
     turn++;
-    evalMovesTaken(cell, "X");
+    oMoves.push(currentMove);
     evalGame();
-    return "X";
+    compMove(turn);
+  } else {
+      evalGame();
+      document.getElementById("gameResult").innerHTML = "The game is a draw!";
   }
 }
 
@@ -79,13 +68,12 @@ function evalGame() {
      if (winMoves[i].every(val => xMoves.includes(val))) {
        isWon = true;
        document.getElementById("gameResult").innerHTML = "X has won the game!";
+       turn = 9;
        break;
      } else if (winMoves[i].every(val => oMoves.includes(val))) {
        isWon = true;
        document.getElementById("gameResult").innerHTML = "O has won the game!";
-     } else {
-       // isWon = false;
-       // compMove();
+       turn = 9;
      }
   }
 }
