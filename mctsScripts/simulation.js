@@ -20,7 +20,7 @@ let winMoves = [
   ["A1","B2","C3"],
   ["C1","B2","A3"]];
 
-whoseTurn(0);
+// compMove(turn);
 
 function whoseTurn(turn) {
   if (turn % 2 === 0) {
@@ -30,8 +30,6 @@ function whoseTurn(turn) {
   }
   return player;
 }
-
-compMove(turn);
 
 function evalMovesTaken(currentMove, player) {
   if (player === "X") {
